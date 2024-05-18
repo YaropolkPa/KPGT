@@ -5,7 +5,8 @@ import numpy as np
 from multiprocessing import Pool
 from rdkit import Chem
 from scipy import sparse as sp
-import argparse 
+import argparse
+from tqdm import tqdm
 
 from src.data.descriptors.rdNormalizedDescriptors import RDKit2DNormalized
 
@@ -25,7 +26,7 @@ def preprocess_dataset(args):
 
     print('extracting fingerprints')
     FP_list = []
-    for smiles in smiless:
+    for smiles in tqdm(smiless):
         mol = Chem.MolFromSmiles(smiles)
         FP_list.append(list(Chem.RDKFingerprint(mol, minPath=1, maxPath=7, fpSize=512)))
     FP_arr = np.array(FP_list)

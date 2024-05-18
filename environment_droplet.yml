@@ -1,4 +1,4 @@
-name: KPGT
+name: KPGT_test
 channels:
   - pytorch
   - nvidia
